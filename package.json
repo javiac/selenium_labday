@@ -1,0 +1,7 @@
+{
+  "name": "selenium_labday",
+  "version": "1.0.0",
+  "dependencies": {
+    "selenium-webdriver": "*"
+  }
+}
