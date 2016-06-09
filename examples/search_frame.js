@@ -10,8 +10,15 @@ var findFrames = {
  action: function (oElement, driver, finish) {
      driver.sleep(2000)
      driver.findElements({xpath: "//iframe"}).then(function(elements){
-         console.log(elements)
+         for(var i=0; i<elements.length; i++){
+             elements[i].getAttribute("id").then(function(id){
+                 console.log(id)
+             })
+         }
+
+         // We have list iframes
      })
+ 
      finish();
  }
 }
@@ -27,10 +34,11 @@ var link_play = {
 
 var tests = [
     "enter https://www.spotify.com/es/",
-    "click Accede -wait 10000",
+    "click Accede",
     "fill Nombre de usuario: javiprr",
     "fill Contraseña: jj18aa09",
     "click Iniciar Sesión",
+    "click Reproductor web",
     findFrames,
     "delay 10000"
 ]
