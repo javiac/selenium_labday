@@ -26,17 +26,6 @@ var link_play = {
     }
 }
 
-//Seleccionar search
-var select_search = {
-    description: "click select search",
-    elemToWait: {xpath:"//a[@id='nav-search']"},
-    action: function (oElement, driver, finish) {
-        oElement.click();
-        finish();
-    }
-}
-
-
 //Buscar
 var change_frame_search = {
     description: "changing frame to search",
@@ -47,66 +36,42 @@ var change_frame_search = {
         finish();
     }
 }
-/*
-
-var son = {
-    description: "click cancion",
-    /!*elemToWait: {xpath:"(//input[@class='form-control focus'])[1]"},*!/
-    elemToWait: {xpath:"//html[@class='web']/descendant::input"},
-    action: function (oElement, driver, finish) {
-        oElement.sendKeys("Hello");
-        finish();
-    }
-}
-*/
 
 //Tu canción
 var song = {
     description: "click song",
     elemToWait: {xpath:"(//input[@class='form-control focus'])[1]"},
     action: function (oElement, driver, finish) {
-        oElement.sendKeys("Adele Hello");
+        oElement.sendKeys("Hello");
         finish();
     }
 }
 
+// elemToWait: {xpath:"//div[@class='results']"},
 //Select cancion
 var select_song = {
-    description: "click select song",
-    elemToWait: {xpath:"(//li[@class='selectable'])[1]"},
+    description: "click in song, select",
+    elemToWait: {xpath:"/html/body/div[3]/div[1]/div[1]/ul[1]/li"},
+    // elemToWait: {xpath:"(//li[@class='selectable'])[1]"},
     action: function (oElement, driver, finish) {
         oElement.click();
         finish();
+        driver.switchTo().defaultContent()
+
     }
 }
 
-//Tu musica
-var your_music = {
-    description: "click your music",
-    elemToWait: {xpath:"//a[@id='nav-collection']"},
+//Seleccionar search
+var select_children = {
+    description: "select children",
+    elemToWait: {xpath:"((//div[@class='front'])/iframe)[2]"},
+    // elemToWait: {xpath:"//*[@id="album-tracks"]/table/tbody/tr"},
     action: function (oElement, driver, finish) {
+        var oID = oElement.getId();
+        console.log(oID);
         oElement.click();
         finish();
     }
-}
-
-var reproduce_song = {
-    description: "click reproduce song",
-    elemToWait: {xpath:"//div[@class='btn-play-text']"},
-    action: function (oElement, driver, finish) {
-        oElement.click();
-        finish();
-    }
-
-}
-var play_list = {
-    description: "click create play list",
-    elemToWait: {xpath:"(//div[@class='item-data'])[1]"},
-    action: function (oElement, driver, finish) {
-        oElement.click();
-        finish();
-    }
-
 }
 
 var change_frame_play_list = {
@@ -120,6 +85,7 @@ var change_frame_play_list = {
     }
 }
 
+
 var tests = [
     "enter https://www.spotify.com/es/",
     "click Accede -wait 10000",
@@ -128,7 +94,7 @@ var tests = [
     "click Iniciar Sesión",
     link_play,
     "delay 5000",
-    select_search,
+    "click Search",
     "delay 5000",
     change_frame_search,
     "delay 5000",
@@ -136,15 +102,7 @@ var tests = [
     "delay 5000",
     select_song,
     "delay 5000",
-    reproduce_song,
-    "delay 5000",
-    your_music,
-    "delay 5000",
-    change_frame_play_list,
-    "click Nueva playlist",
-    link_play,
-    "delay 5000",
-    "click Search -wait 2000",
+    select_children,
     "delay 10000"
 ]
 
