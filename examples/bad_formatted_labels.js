@@ -16,18 +16,33 @@ var TestRunner = require('../lib/TestRunner')
  }
  }*/
 
+
 var tests = [
     "enter https://www.alsa.es",
     "click Origen -wait 2000",
     "fill Origen: Granada",
     "click Destino -wait 5000",
-    "fill Destino: Cordoba",
+    "fill Destino: Cordoba -wait 2000",
     "click Ida",
-    "fill Ida: 10/06/2016",
+    "fill Ida: 17/06/2016",
     "click Vuelta",
-    "fill Vuelta: 17/06/2016",
-    "click Busca el mejor precio",
-    "delay 10000"
+    "fill Vuelta: 24/06/2016",
+    "click Busca el mejor precio -wait 5000",
+    "clickXpath //*[@id='outwardJourney0-0']/div",
+    "click Continuar -wait 2000",
+    "click Continuar",
+    "fill Nombre: Loli",
+    "fill Apellidos: Puerta Puerta",
+    "fill Número de documento: 76421162M",
+    "fill Email: loli@gmail.com",
+    "fill Repetir email: loli@gmail.com",
+    "delay 2000",
+    "clickXpath (//*[@class='simula-checkbox'])[4]",
+    "delay 5000",
+    "clickXpath (//*[@class='simula-radio'])[11]",
+    "delay 5000",
+    "click Pagar",
+    "delay 50000"
 ]
 
 // TestRunner configuration
